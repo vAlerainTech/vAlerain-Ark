@@ -11,6 +11,15 @@ _Ark是Anti-Rootkit（对抗恶意程序）的简写, vAlerainArk目标成为逆
 ![image](https://img.shields.io/badge/Windows-Ring0-gree)
 ![image](https://img.shields.io/badge/Windows-API-gree)
 
+## 1.0.0.1
+* Optimized startup animation
+* Support for ending, freezing, and ending process trees, viewing process paths, and copying process information for processes
+* Support for reading, viewing, and modifying Windows file associations
+* Enumeration and operation support for the registry of Windows service drivers
+* Hook testing and callback for Windows message hooks, mouse and keyboard
+* Support checking windowsPE structure file analysis
+* Support for Windows local proxy changes
+
 ## v1.0.0.0
 
 * Support for ending, freezing, and ending process trees, viewing process paths, and copying process information for processes
