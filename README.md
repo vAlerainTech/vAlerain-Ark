@@ -28,3 +28,9 @@ _Ark是Anti-Rootkit（对抗恶意程序）的简写, vAlerainArk目标成为逆
 * Hook testing and callback for Windows message hooks, mouse and keyboard
 * Support checking windowsPE structure file analysis
 * Support for Windows local proxy changes
+
+# The source code usage standard is based on C++17
+We strongly recommend using CLion compilation, and you can also use Microsoft's VS but never use dev cpp.
+
+# Special thanks
+CLion's technical support.
