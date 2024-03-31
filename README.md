@@ -11,6 +11,14 @@ _Ark是Anti-Rootkit（对抗恶意程序）的简写, vAlerainArk目标成为逆
 ![image](https://img.shields.io/badge/Windows-Ring0-gree)
 ![image](https://img.shields.io/badge/Windows-API-gree)
 
+# F&Q
+## What can I use your ark for?
+My Ark currently has relatively few functions that can be implemented, only managing processes and services, as well as hook, dump, and other functions that will be implemented soon.
+## How do you consider the future when your functionality is so advanced?
+Although I also know that our features are limited, they will gradually update, such as innovating by removing PPLs and preventing drivers from turning on and off, and my drivers are written too junk and ready for refactoring.
+## What was your original intention for developing Ark?
+At first, the author liked to use the Velvet Sword, but later it was taken down. As the author was studying the Windows kernel and preparing to write an ark to understand the kernel and pagination, this project was created.
+
 ## 1.0.0.2
 * Optimized startup animation
 * Support ending, freezing, and ending process trees, viewing process paths, and copying process information
@@ -43,4 +51,7 @@ _Ark是Anti-Rootkit（对抗恶意程序）的简写, vAlerainArk目标成为逆
 We strongly recommend using CLion compilation, and you can also use Microsoft's VS but never use dev cpp.
 
 # Special thanks
-CLion's technical support.
+* CLion's technical support
+* vAlerain Develop
+* Long term evaluation and repair of SNbing54
+  
