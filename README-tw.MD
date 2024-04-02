@@ -51,7 +51,7 @@ _方舟 是 Anti-Rootkit（ 对抗恶意程序）的简写,  vAlertainArk 目标
 我們强烈建議使用CLion編譯，您也可以使用Microsoft的VS，但永遠不要使用dev-cpp。
 
 # 特別感謝
-*CLion的技術支援
-*vAlertain開發
-*SNbing54的長期評估和修復
+* CLion的技術支援
+* vAlertain開發
+* SNbing54的長期評估和修復
   
