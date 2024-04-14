@@ -53,8 +53,8 @@ At first, the author liked to use the Velvet Sword, but later it was taken down.
 # The source code usage standard is based on C++17
 We strongly recommend using CLion compilation, and you can also use Microsoft's VS but never use dev cpp.
 
-# Special thanks
+# **Special thanks**
 * CLion's technical support
-* vAlerain Develop;Code from Mr. vAlerain;
-* Long term evaluation and repair of SNbing54
+* _vAlerain_ Develop;Code from Mr. _vAlerain_;
+* Long term evaluation and repair of _SNbing54_
   
