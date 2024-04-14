@@ -3,3 +3,8 @@
 1	1834	7347790540617834	CMakeFiles/vAlerain_Ark.dir/Preview-version/main.cpp.obj	fde7b43e9516adf4
 35	1835	7347790540656767	CMakeFiles/vAlerain_Ark.dir/Source-code/1.0.0.2/main.cpp.obj	6f2269be867a7f06
 56	1852	7347790541768169	CMakeFiles/vAlerain_Ark.dir/Source-code/1.0.0.1/main.cpp.obj	c8a3829b9b59685d
+1	191	7348089052220408	build.ninja	512e48bd8b57e2a8
+0	1047	7348087249745898	CMakeFiles/my_target.dir/Source-code/1.0.0.2/main.cpp.obj	5179fbc80b237b2a
+16	1063	7348087249905370	CMakeFiles/my_target.dir/Preview-version/1.0.0.1/main.cpp.obj	5614fc7c07131b26
+2	190	7348089052220408	build.ninja	512e48bd8b57e2a8
+2	167	7348089054064623	my_target.exe	483635a10c08ac57

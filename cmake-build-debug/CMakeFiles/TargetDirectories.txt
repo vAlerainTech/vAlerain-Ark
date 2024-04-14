@@ -1,3 +1,3 @@
-C:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug/CMakeFiles/vAlerain_Ark.dir
+C:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug/CMakeFiles/my_target.dir
 C:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug/CMakeFiles/rebuild_cache.dir
