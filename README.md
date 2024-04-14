@@ -55,6 +55,6 @@ We strongly recommend using CLion compilation, and you can also use Microsoft's 
 
 # Special thanks
 * CLion's technical support
-* vAlerain Develop
+* vAlerain Develop;Code from Mr. vAlerain;
 * Long term evaluation and repair of SNbing54
   
