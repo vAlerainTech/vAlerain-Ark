@@ -1,27 +1,34 @@
-name: Build specific CPP file
+name: CMake Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main  # 触发条件可以根据你的需要进行调整
   pull_request:
-    branches: [ "main" ]
-
-env:
-  # 自定义 CMake 构建类型 (Release, Debug, RelWithDebInfo, 等等)
-  BUILD_TYPE: Release
+    branches:
+      - main  # 同样，根据需要进行调整
 
 jobs:
   build:
-    # CMake 配置和构建命令是平台无关的，应该在 Windows 或 Mac 上同样有效。
-    runs-on: windows-latest
+    runs-on: windows-latest  # 这里使用 Windows 最新版本
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
 
-    - name: Configure CMake
-      # 在 'build' 子目录中配置 CMake。`CMAKE_BUILD_TYPE` 仅在使用单配置生成器（如 make）时才需要。
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+    - name: Set up MSVC
+      uses: microsoft/setup-msbuild@v1.0.2  # 设置 MSVC 环境
 
-    - name: Build specific CPP file
-      # 编译特定的 CPP 文件
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target your_specific_target_name
+    - name: Set up CMake
+      uses: cmake/action@v2
+
+    - name: Configure
+      run: cmake -Bbuild
+
+    - name: Build
+      run: cmake --build build --config Release  # 编译 Release 版本，可以根据需要调整
+
+    - name: Test
+      run: cmake --build build --target test  # 运行测试，如果有的话
+
+    - name: Install
+      run: cmake --install build  # 安装生成的文件
