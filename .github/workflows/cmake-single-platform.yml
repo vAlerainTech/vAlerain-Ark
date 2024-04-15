@@ -10,16 +10,18 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # 这里使用 Windows 最新版本
+    runs-on: windows-latest  # 使用 Windows 最新版本
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up MSVC
-      uses: microsoft/setup-msbuild@v1.0.2  # 设置 MSVC 环境
+    - name: Install CMake
+      run: |
+        choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System'
+        RefreshEnv.cmd
 
-    - name: Set up CMake
-      uses: cmake/action@v2
+    - name: Install Visual Studio Build Tools
+      uses: microsoft/setup-msbuild@v1.0.2  # 设置 MSBuild 环境
 
     - name: Configure
       run: cmake -Bbuild
