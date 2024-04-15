@@ -118,14 +118,15 @@ void TerminateProcessTree(DWORD parentPID) {
 int main() {
 
     while(true){
-    COLOR_PRINT("vAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
+    COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
     string input="";
-    cin>>input;
+    COLOR_PRINT("PC vAlerain-Ark>",1);
+    getline(std::cin,input);
     if(input == "1") {
-        int input_proce=0;
+        string input_proce="";
         cout<<"Input frequency to control the speed of the acquisition process in milliseconds:";
-        cin>>input_proce;
-        Get_all_processes(input_proce);
+        getline(std::cin,input_proce);
+        Get_all_processes(stoi(input_proce));
     }else if(input == "about"){
         COLOR_PRINT("CLion's technical support\n"
                     "vAlerain Develop;Code from Mr. vAlerain;\n"
@@ -142,6 +143,10 @@ int main() {
             cout<<"Enter process PID to end the process:";
             cin>>processID_;
             TerminateProcessTree(processID_);
+        }else if(input == ""){
+            COLOR_PRINT("\nWarning: Your input of empty data cannot be parsed!\n",6);
+        }else{
+            COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n",4);
         }
     }
     return 0;

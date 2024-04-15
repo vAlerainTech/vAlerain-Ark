@@ -8,7 +8,7 @@ include_directories(Header-file)
 include_directories(Header-file/sys)
 
 # 添加可执行文件目标
-add_executable(my_target
+add_executable(main
         Preview-version/1.0.0.1/main.cpp)
 
 

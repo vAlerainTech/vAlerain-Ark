@@ -41,38 +41,38 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target my_target
+# Object build statements for EXECUTABLE target main
 
 
 #############################################
-# Order-only phony target for my_target
+# Order-only phony target for main
 
-build cmake_object_order_depends_target_my_target: phony || CMakeFiles/my_target.dir
+build cmake_object_order_depends_target_main: phony || CMakeFiles/main.dir
 
-build CMakeFiles/my_target.dir/Preview-version/1.0.0.1/main.cpp.obj: CXX_COMPILER__my_target_unscanned_Debug C$:/Users/valer/CLionProjects/vAlerain-Ark/Preview-version/1.0.0.1/main.cpp || cmake_object_order_depends_target_my_target
-  DEP_FILE = CMakeFiles\my_target.dir\Preview-version\1.0.0.1\main.cpp.obj.d
+build CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj: CXX_COMPILER__main_unscanned_Debug C$:/Users/valer/CLionProjects/vAlerain-Ark/Preview-version/1.0.0.1/main.cpp || cmake_object_order_depends_target_main
+  DEP_FILE = CMakeFiles\main.dir\Preview-version\1.0.0.1\main.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/valer/CLionProjects/vAlerain-Ark/Header-file -IC:/Users/valer/CLionProjects/vAlerain-Ark/Header-file/sys
-  OBJECT_DIR = CMakeFiles\my_target.dir
-  OBJECT_FILE_DIR = CMakeFiles\my_target.dir\Preview-version\1.0.0.1
+  OBJECT_DIR = CMakeFiles\main.dir
+  OBJECT_FILE_DIR = CMakeFiles\main.dir\Preview-version\1.0.0.1
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target my_target
+# Link build statements for EXECUTABLE target main
 
 
 #############################################
-# Link the executable my_target.exe
+# Link the executable main.exe
 
-build my_target.exe: CXX_EXECUTABLE_LINKER__my_target_Debug CMakeFiles/my_target.dir/Preview-version/1.0.0.1/main.cpp.obj
+build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\my_target.dir
+  OBJECT_DIR = CMakeFiles\main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = my_target.exe
-  TARGET_IMPLIB = libmy_target.dll.a
-  TARGET_PDB = my_target.exe.dbg
+  TARGET_FILE = main.exe
+  TARGET_IMPLIB = libmain.dll.a
+  TARGET_PDB = main.exe.dbg
 
 
 #############################################
@@ -100,7 +100,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build my_target: phony my_target.exe
+build main: phony main.exe
 
 # =============================================================================
 # Folder targets.
@@ -110,7 +110,7 @@ build my_target: phony my_target.exe
 #############################################
 # Folder: C:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug
 
-build all: phony my_target.exe
+build all: phony main.exe
 
 # =============================================================================
 # Built-in targets
