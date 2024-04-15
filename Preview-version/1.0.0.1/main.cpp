@@ -126,7 +126,7 @@ int main() {
         string input_proce="";
         cout<<"Input frequency to control the speed of the acquisition process in milliseconds:";
         getline(std::cin,input_proce);
-        Get_all_processes(stoi(input_proce));
+        Get_all_processes(stoi(input_proce)); //为了解决getline只能读取字符串的原因使用stoi用来更正
     }else if(input == "about"){
         COLOR_PRINT("CLion's technical support\n"
                     "vAlerain Develop;Code from Mr. vAlerain;\n"
