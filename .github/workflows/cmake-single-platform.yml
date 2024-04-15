@@ -13,12 +13,13 @@ jobs:
     runs-on: windows-latest  # 使用 Windows 最新版本
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
     - name: Install CMake
       run: |
         choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System'
-        RefreshEnv.cmd
+        Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 
     - name: Install Visual Studio Build Tools
       uses: microsoft/setup-msbuild@v1.0.2  # 设置 MSBuild 环境
