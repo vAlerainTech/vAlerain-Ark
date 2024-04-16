@@ -116,9 +116,8 @@ void TerminateProcessTree(DWORD parentPID) {
 }
 
 int main() {
-
-    while(true){
     COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
+    while(true){
     string input="";
     COLOR_PRINT("PC vAlerain-Ark>",1);
     getline(std::cin,input);
@@ -144,7 +143,9 @@ int main() {
             cin>>processID_;
             TerminateProcessTree(processID_);
         }else if(input == ""){
-            COLOR_PRINT("\nWarning: Your input of empty data cannot be parsed!\n",6);
+            COLOR_PRINT("\nWarning: Your input of empty data cannot be parsed!\n\n",6);
+        }else if(input == "memu"){
+        COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
         }else{
             COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n",4);
         }
