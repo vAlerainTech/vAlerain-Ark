@@ -23,8 +23,8 @@ void COLOR_PRINT(const char* s, int color)
 7 = 白色 15 = 亮白色*/
 
 
-int Get_all_processes(int num){ //一个参数用来控制获取频率
-    while(true) {
+int Get_all_processes(int num) { // 一个参数用来控制获取频率
+    while (true) {
         // 创建进程快照
         HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
         if (hSnapshot == INVALID_HANDLE_VALUE) {
@@ -44,13 +44,26 @@ int Get_all_processes(int num){ //一个参数用来控制获取频率
         std::cout << "Process List:" << std::endl;
 
         do {
-            std::cout << "Process ID: " << pe32.th32ProcessID << ", Name: " << pe32.szExeFile << std::endl;
+            std::cout << "Process ID: " << pe32.th32ProcessID << ", Name: " << pe32.szExeFile;
+
+            // 打开进程句柄
+            HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pe32.th32ProcessID);
+            if (hProcess != NULL) {
+                std::cout << ", Handle: " << hProcess;
+                // 关闭进程句柄
+                CloseHandle(hProcess);
+            } else {
+                std::cerr << "Failed to open process with ID: " << pe32.th32ProcessID << std::endl;
+            }
+
+            std::cout << std::endl;
         } while (Process32Next(hSnapshot, &pe32));
 
         // 关闭进程快照句柄
         CloseHandle(hSnapshot);
         Sleep(num);
     }
+    return 0;
 }
 
 bool TerminateProcessByID(DWORD processID) {
