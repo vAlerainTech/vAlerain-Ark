@@ -6,6 +6,30 @@
 
 using namespace std;
 
+/*
+MIT License
+
+Copyright (c) 2024 vAlerian
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+ */
+
 void COLOR_PRINT(const char* s, int color)
 {
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -128,8 +152,15 @@ void TerminateProcessTree(DWORD parentPID) {
     CloseHandle(hParentProcess);
 }
 
+int hwnd_to_int(HWND hwnd)
+{
+    return reinterpret_cast<intptr_t>(hwnd); //hwnd转换int
+}
+
+HWND temp1 = GetForegroundWindow(); //获取窗口句柄api
+
 int main() {
-    COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
+    COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter 5 to obtain window message management\n  [*]Enter 6 to obtain the window handle where the mouse is located\n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
     while(true){
     string input="";
     COLOR_PRINT("PC vAlerain-Ark>",1);
@@ -159,6 +190,8 @@ int main() {
             COLOR_PRINT("\nWarning: Your input of empty data cannot be parsed!\n\n",6);
         }else if(input == "memu"){
         COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
+        }else if(input == "6"){
+            cout<<"[-]"<<hwnd_to_int(GetForegroundWindow())<<"\n";
         }else{
             COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n",4);
         }
