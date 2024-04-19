@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(Header-file)
 include_directories(Header-file/sys)
 
+#解决兼容方法
 set(CMAKE_EXE_LINKER_FLAGS -static)
 
 # 添加可执行文件目标
