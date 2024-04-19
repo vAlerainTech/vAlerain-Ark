@@ -64,8 +64,9 @@ build CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj: CXX_COMPILER__ma
 #############################################
 # Link the executable main.exe
 
-build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj
+build main.exe: CXX_EXECUTABLE_LINKER__main_Debug ico.o CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj
   FLAGS = -g
+  LINK_FLAGS = -static
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\main.dir
   POST_BUILD = cd .

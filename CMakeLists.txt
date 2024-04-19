@@ -7,8 +7,10 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(Header-file)
 include_directories(Header-file/sys)
 
+set(CMAKE_EXE_LINKER_FLAGS -static)
+
 # 添加可执行文件目标
 add_executable(main
-        Preview-version/1.0.0.1/main.cpp)
-
-
+        Preview-version/1.0.0.1/main.cpp
+        cmake-build-debug/ico.o
+)
