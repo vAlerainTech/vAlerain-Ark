@@ -3,6 +3,7 @@
 #include <TlHelp32.h>
 #include <vector>
 #include <Shlwapi.h>
+#include <cmath>
 
 using namespace std;
 
@@ -191,9 +192,12 @@ int main() {
         }else if(input == "memu"){
         COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
         }else if(input == "6"){
+            Sleep(3000);
             cout<<"[-]"<<hwnd_to_int(GetForegroundWindow())<<"\n";
+        }else if(input == "test-cpu"){
+
         }else{
-            COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n",4);
+            COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n\n",4);
         }
     }
     return 0;

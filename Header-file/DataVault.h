@@ -1,37 +1,35 @@
-//
-// Created by valer on 2024/4/14.
-//
-
-
-/*
- *  https://github.com/WhiteFoxLinux/DataVault
- *  Code from Mr. vAlerain
- *  Invented to solve the problem of data that cannot be stored for long and long in C++
- */
-#ifndef DATAVAULT_DATAVAULT_H
-#define DATAVAULT_DATAVAULT_H
-
-#endif //DATAVAULT_DATAVAULT_H
-
 #include <iostream>
-class DataVault {
+#include <chrono>
+#include <string>
+#include <algorithm>
+
+class BigNumber {
 private:
-    int value; //
+    std::string num;
 
 public:
-    // Constructor, used to initialize variable values
-    void CustomVariable(int val) {
-        value = val;
-    }
+    BigNumber() : num("0") {}
+    BigNumber(const std::string& str) : num(str) {}
 
-    //Define variables
+    BigNumber operator*(const BigNumber& other) const {
+        std::string result(num.length() + other.num.length(), '0');
 
-    int getValue() {
-        return value;
-    }
+        for (int i = num.length() - 1; i >= 0; i--) {
+            int carry = 0;
+            int digit1 = num[i] - '0';
 
-    // Method for setting variable values
-    void setValue(int val) {
-        value = val;
+            for (int j = other.num.length() - 1; j >= 0; j--) {
+                int digit2 = other.num[j] - '0';
+                int product = digit1 * digit2 + (result[i + j + 1] - '0') + carry;
+                carry = product / 10;
+                product %= 10;
+                result[i + j + 1] = product + '0';
+            }
+
+            result[i] += carry;
+        }
+
+        result.erase(0, result.find_first_not_of('0'));
+        return result.empty() ? BigNumber("0") : BigNumber(result);
     }
 };
