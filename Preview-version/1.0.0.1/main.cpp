@@ -104,12 +104,18 @@ int Get_all_processes(int num) { // 一个参数用来控制获取频率
         std::cout << "Process List:" << std::endl;
 
         do {
-            std::cout << "Process ID: " << pe32.th32ProcessID << ", Name: " << pe32.szExeFile;
+            string processIDStr = std::to_string(pe32.th32ProcessID);
+            string exeFileName(pe32.szExeFile);
+            string result = "Process ID: " + processIDStr + ", Name: " + exeFileName;
+            const char* charArray = result.c_str();
+            COLOR_PRINT(charArray,3);
 
             // 打开进程句柄
             HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pe32.th32ProcessID);
             if (hProcess != NULL) {
-                std::cout << ", Handle: " << hProcess;
+                string temp_=", Handle: " + to_string(reinterpret_cast<uintptr_t>(hProcess));
+                const char* charHandle = temp_.c_str();
+                COLOR_PRINT(charHandle,3);
                 // 关闭进程句柄
                 CloseHandle(hProcess);
             } else {
