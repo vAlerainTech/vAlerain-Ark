@@ -235,7 +235,8 @@ int main() {
     }else if(input == "about"){
         COLOR_PRINT("CLion's technical support\n"
                     "vAlerain Develop;Code from Mr. vAlerain;\n"
-                    "Long term evaluation and repair of SNbing54\n",1);
+                    "Long term evaluation and repair of SNbing54\n"
+                    "Version: 1.0.0.6 (debugging)\n",1);
         }else if(input == "exit"){
             return 0;
         }else if(input == "3"){
