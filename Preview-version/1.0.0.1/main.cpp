@@ -261,6 +261,50 @@ int main() {
             COLOR_PRINT("Input Test Window Handle:",3);
             cin>>hWnd;
             window_hwnd_control(1,hWnd);
+        }else if(input == "get-prx"){
+        // 创建进程快照
+        HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+        if (hSnapshot == INVALID_HANDLE_VALUE) {
+            std::cerr << "Failed to create process snapshot." << std::endl;
+            return 1;
+        }
+
+        // 遍历进程列表
+        PROCESSENTRY32 pe32;
+        pe32.dwSize = sizeof(PROCESSENTRY32);
+        if (!Process32First(hSnapshot, &pe32)) {
+            std::cerr << "Failed to retrieve process information." << std::endl;
+            CloseHandle(hSnapshot);
+            return 1;
+        }
+
+        std::cout << "Process List:" << std::endl;
+
+        do {
+            string processIDStr = std::to_string(pe32.th32ProcessID);
+            string exeFileName(pe32.szExeFile);
+            string result = "Process ID: " + processIDStr + ", Name: " + exeFileName;
+            const char* charArray = result.c_str();
+            COLOR_PRINT(charArray,3);
+
+            // 打开进程句柄
+            HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pe32.th32ProcessID);
+            if (hProcess != NULL) {
+                string temp_=", Handle: " + to_string(reinterpret_cast<uintptr_t>(hProcess));
+                const char* charHandle = temp_.c_str();
+                COLOR_PRINT(charHandle,3);
+                // 关闭进程句柄
+                CloseHandle(hProcess);
+            } else {
+                std::cerr << "Failed to open process with ID: " << pe32.th32ProcessID << std::endl;
+            }
+
+            std::cout << std::endl;
+        } while (Process32Next(hSnapshot, &pe32));
+
+        // 关闭进程快照句柄
+        CloseHandle(hSnapshot);
+
         }else{
             COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n\n",4);
         }
