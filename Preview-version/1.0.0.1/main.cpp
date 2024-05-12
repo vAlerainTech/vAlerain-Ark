@@ -305,6 +305,11 @@ int main() {
         // 关闭进程快照句柄
         CloseHandle(hSnapshot);
 
+        }else if(input == "5"){
+            COLOR_PRINT("Kill Window:",4);
+            string hwnd_temp="";
+            getline(std::cin,hwnd_temp);
+            window_hwnd_control(1,stoi(hwnd_temp));
         }else{
             COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n\n",4);
         }
