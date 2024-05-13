@@ -49,12 +49,12 @@ cmake_ninja_workdir = C$:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-deb
 
 build cmake_object_order_depends_target_main: phony || CMakeFiles/main.dir
 
-build CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj: CXX_COMPILER__main_unscanned_Debug C$:/Users/valer/CLionProjects/vAlerain-Ark/Preview-version/1.0.0.1/main.cpp || cmake_object_order_depends_target_main
-  DEP_FILE = CMakeFiles\main.dir\Preview-version\1.0.0.1\main.cpp.obj.d
+build CMakeFiles/main.dir/Source-code/debug/main.cpp.obj: CXX_COMPILER__main_unscanned_Debug C$:/Users/valer/CLionProjects/vAlerain-Ark/Source-code/debug/main.cpp || cmake_object_order_depends_target_main
+  DEP_FILE = CMakeFiles\main.dir\Source-code\debug\main.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/valer/CLionProjects/vAlerain-Ark/Header-file -IC:/Users/valer/CLionProjects/vAlerain-Ark/Header-file/sys
   OBJECT_DIR = CMakeFiles\main.dir
-  OBJECT_FILE_DIR = CMakeFiles\main.dir\Preview-version\1.0.0.1
+  OBJECT_FILE_DIR = CMakeFiles\main.dir\Source-code\debug
 
 
 # =============================================================================
@@ -64,7 +64,7 @@ build CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj: CXX_COMPILER__ma
 #############################################
 # Link the executable main.exe
 
-build main.exe: CXX_EXECUTABLE_LINKER__main_Debug ico.o CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj
+build main.exe: CXX_EXECUTABLE_LINKER__main_Debug ico.o CMakeFiles/main.dir/Source-code/debug/main.cpp.obj
   FLAGS = -g
   LINK_FLAGS = -static
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

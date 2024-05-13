@@ -12,6 +12,6 @@ set(CMAKE_EXE_LINKER_FLAGS -static)
 
 # 添加可执行文件目标
 add_executable(main
-        Preview-version/1.0.0.1/main.cpp
+        Source-code/debug/main.cpp
         cmake-build-debug/ico.o
 )
