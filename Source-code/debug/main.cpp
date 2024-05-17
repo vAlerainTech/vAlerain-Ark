@@ -2,8 +2,8 @@
 #include <iostream>
 #include <TlHelp32.h>
 #include <vector>
-#include <Shlwapi.h>
 #include <cmath>
+
 
 using namespace std;
 
@@ -187,7 +187,7 @@ int main() {
     COLOR_PRINT(" \\ V / ___ \\| |  __/ | | (_| | | | | |_____/ ___ \\| |  |   < \n", 3);
     COLOR_PRINT("  \\_/_/   \\_\\_|\\___|_|  \\__,_|_|_| |_|    /_/   \\_\\_|  |_|\\_\\ \n", 3);
 
-    COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter 5 to obtain window message management\n  [*]Enter 6 to obtain the window handle where the mouse is located\n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
+    COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter 5 to obtain window message management\n  [*]Enter 6 to obtain the window handle where the mouse is located\n[*]Enter GetTime get system time\n[*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
     while(true){
     string input="";
     COLOR_PRINT("PC vAlerain-Ark>",1);
@@ -275,9 +275,15 @@ int main() {
             string hwnd_temp="";
             getline(std::cin,hwnd_temp);
             window_hwnd_control(1,stoi(hwnd_temp));
+        }else if(input =="GetTime"){
+            SYSTEMTIME temp;
+            GetLocalTime(&temp);
+            printf("%04d/%02d/%02d %02d:%02d:%02d\n", temp.wYear, temp.wMonth, temp.wDay, temp.wHour, temp.wMinute, temp.wSecond);
+
         }else{
             COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n\n",4);
         }
+
     }
     return 0;
 }
