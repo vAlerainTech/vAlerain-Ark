@@ -188,7 +188,8 @@ int main() {
     COLOR_PRINT("  \\_/_/   \\_\\_|\\___|_|  \\__,_|_|_| |_|    /_/   \\_\\_|  |_|\\_\\ \n", 3);
     bool cmd = false;
     string pc= "PC vAlerain-Ark>";
-    COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter 5 to obtain window message management\n  [*]Enter 6 to obtain the window handle where the mouse is located\n[*]Enter GetTime get system time\n[*]Input CMD to obtain simulated CMD terminal\n[*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
+    string memu = "\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter 5 to obtain window message management\n  [*]Enter 6 to obtain the window handle where the mouse is located\n[*]Enter GetTime get system time\n[*]Input CMD to obtain simulated CMD terminal\n[*]Enter about to obtain information about\n [*]Enter exit to exit\n";
+    COLOR_PRINT(memu.c_str(),4);
     while(true){
     string input="";
 
@@ -201,10 +202,10 @@ int main() {
         getline(std::cin,input_proce);
         Get_all_processes(stoi(input_proce)); //为了解决getline只能读取字符串的原因使用stoi用来更正
     }else if(input == "about" && cmd == false){
-        COLOR_PRINT("CLion's technical support\n"
+        COLOR_PRINT("\nCLion's technical support\n"
                     "vAlerain Develop;Code from Mr. vAlerain;\n"
                     "Long term evaluation and repair of SNbing54\n"
-                    "Version: 1.0.0.6 (debugging)\n",1);
+                    "Version: 1.0.0.7 (debugging)\n\n",1);
         }else if(input == "exit" && cmd == false){
             return 0;
         }else if(input == "3" && cmd == false){
@@ -220,7 +221,7 @@ int main() {
         }else if(input == "" && cmd == false){
             COLOR_PRINT("\nWarning: Your input of empty data cannot be parsed!\n\n",6);
         }else if(input == "memu" && cmd == false){
-        COLOR_PRINT("\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter about to obtain information about\n [*]Enter exit to exit\n",4);
+        COLOR_PRINT(memu.c_str(),4);
         }else if(input == "6" && cmd == false){
             Sleep(3000);
             cout<<"[-]"<<hwnd_to_int(GetForegroundWindow())<<"\n";
