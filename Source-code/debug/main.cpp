@@ -282,7 +282,7 @@ int main() {
         }else if(input =="GetTime" && cmd == false){
             SYSTEMTIME temp;
             GetLocalTime(&temp);
-            printf("%04d/%02d/%02d %02d:%02d:%02d\n", temp.wYear, temp.wMonth, temp.wDay, temp.wHour, temp.wMinute, temp.wSecond);
+            printf("%04d/%02d/%02d %02d:%02d:%02d\n\n", temp.wYear, temp.wMonth, temp.wDay, temp.wHour, temp.wMinute, temp.wSecond);
 
         }else if(input == "CMD" && cmd == false){
             pc="PC vAlerain-Ark(CMD)>";
