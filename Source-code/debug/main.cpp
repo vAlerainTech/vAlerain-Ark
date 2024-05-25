@@ -54,7 +54,7 @@ int Get_all_processes(int num) { // 一个参数用来控制获取频率
         // 创建进程快照
         HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
         if (hSnapshot == INVALID_HANDLE_VALUE) {
-            std::cerr << "Failed to create process snapshot." << std::endl;
+            cerr << "Failed to create process snapshot." << endl;
             return 1;
         }
 
@@ -62,15 +62,15 @@ int Get_all_processes(int num) { // 一个参数用来控制获取频率
         PROCESSENTRY32 pe32;
         pe32.dwSize = sizeof(PROCESSENTRY32);
         if (!Process32First(hSnapshot, &pe32)) {
-            std::cerr << "Failed to retrieve process information." << std::endl;
+            cerr << "Failed to retrieve process information." << endl;
             CloseHandle(hSnapshot);
             return 1;
         }
 
-        std::cout << "Process List:" << std::endl;
+        cout << "Process List:" << endl;
 
         do {
-            string processIDStr = std::to_string(pe32.th32ProcessID);
+            string processIDStr = to_string(pe32.th32ProcessID);
             string exeFileName(pe32.szExeFile);
             string result = "Process ID: " + processIDStr + ", Name: " + exeFileName;
             const char* charArray = result.c_str();
@@ -85,10 +85,10 @@ int Get_all_processes(int num) { // 一个参数用来控制获取频率
                 // 关闭进程句柄
                 CloseHandle(hProcess);
             } else {
-                std::cerr << "Failed to open process with ID: " << pe32.th32ProcessID << std::endl;
+                cerr << "Failed to open process with ID: " << pe32.th32ProcessID << endl;
             }
 
-            std::cout << std::endl;
+            cout << endl;
         } while (Process32Next(hSnapshot, &pe32));
 
         // 关闭进程快照句柄
@@ -102,13 +102,13 @@ bool TerminateProcessByID(DWORD processID) {
     // 打开进程句柄
     HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, processID);
     if (hProcess == NULL) {
-        std::cerr << "Failed to open process handle." << std::endl;
+        cerr << "Failed to open process handle." << endl;
         return false;
     }
 
     // 结束进程
     if (!TerminateProcess(hProcess, 0)) {
-        std::cerr << "Failed to terminate process." << std::endl;
+        cerr << "Failed to terminate process." << endl;
         CloseHandle(hProcess);
         return false;
     }
@@ -123,12 +123,12 @@ void TerminateProcessTree(DWORD parentPID) {
     // 打开父进程句柄
     HANDLE hParentProcess = OpenProcess(PROCESS_TERMINATE | PROCESS_QUERY_INFORMATION, FALSE, parentPID);
     if (hParentProcess == NULL) {
-        std::cerr << "Failed to open parent process handle." << std::endl;
+        cerr << "Failed to open parent process handle." << endl;
         return;
     }
 
     // 枚举父进程的所有子进程
-    std::vector<DWORD> childPIDs;
+    vector<DWORD> childPIDs;
     HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (hSnapshot != INVALID_HANDLE_VALUE) {
         PROCESSENTRY32 pe32;
@@ -269,7 +269,7 @@ void printError(const TCHAR* msg )
 }
 
 int main() {
-    COLOR_PRINT("        _    _                _               _         _\n", 3);
+    COLOR_PRINT("   _    _                _               _         _\n", 3);
     COLOR_PRINT("__   __/ \\  | | ___ _ __ __ _(_)_ __         / \\   _ __| | __\n", 3);
     COLOR_PRINT("\\ \\ / / _ \\ | |/ _ \\ '__/ _` | | '_ \\ _____ / _ \\ | '__| |/ /\"\n", 3);
     COLOR_PRINT(" \\ V / ___ \\| |  __/ | | (_| | | | | |_____/ ___ \\| |  |   < \n", 3);
