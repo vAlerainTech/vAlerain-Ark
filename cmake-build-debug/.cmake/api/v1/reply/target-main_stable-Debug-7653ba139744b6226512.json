@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "main.exe"
+			"path" : "main_stable.exe"
 		},
 		{
-			"path" : "main.pdb"
+			"path" : "main_stable.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -28,7 +28,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 14,
+				"line" : 18,
 				"parent" : 0
 			},
 			{
@@ -80,7 +80,7 @@
 			]
 		}
 	],
-	"id" : "main::@6890427a1f51a3e7e1df",
+	"id" : "main_stable::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -100,8 +100,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "main",
-	"nameOnDisk" : "main.exe",
+	"name" : "main_stable",
+	"nameOnDisk" : "main_stable.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -129,7 +129,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Source-code/debug/main.cpp",
+			"path" : "Source-code/stable/main.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

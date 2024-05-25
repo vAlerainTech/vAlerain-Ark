@@ -41,39 +41,74 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target main
+# Object build statements for EXECUTABLE target main_debug
 
 
 #############################################
-# Order-only phony target for main
+# Order-only phony target for main_debug
 
-build cmake_object_order_depends_target_main: phony || CMakeFiles/main.dir
+build cmake_object_order_depends_target_main_debug: phony || CMakeFiles/main_debug.dir
 
-build CMakeFiles/main.dir/Source-code/debug/main.cpp.obj: CXX_COMPILER__main_unscanned_Debug C$:/Users/valer/CLionProjects/vAlerain-Ark/Source-code/debug/main.cpp || cmake_object_order_depends_target_main
-  DEP_FILE = CMakeFiles\main.dir\Source-code\debug\main.cpp.obj.d
+build CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj: CXX_COMPILER__main_debug_unscanned_Debug C$:/Users/valer/CLionProjects/vAlerain-Ark/Source-code/debug/main.cpp || cmake_object_order_depends_target_main_debug
+  DEP_FILE = CMakeFiles\main_debug.dir\Source-code\debug\main.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/valer/CLionProjects/vAlerain-Ark/Header-file -IC:/Users/valer/CLionProjects/vAlerain-Ark/Header-file/sys
-  OBJECT_DIR = CMakeFiles\main.dir
-  OBJECT_FILE_DIR = CMakeFiles\main.dir\Source-code\debug
+  OBJECT_DIR = CMakeFiles\main_debug.dir
+  OBJECT_FILE_DIR = CMakeFiles\main_debug.dir\Source-code\debug
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target main
+# Link build statements for EXECUTABLE target main_debug
 
 
 #############################################
-# Link the executable main.exe
+# Link the executable main_debug.exe
 
-build main.exe: CXX_EXECUTABLE_LINKER__main_Debug ico.o CMakeFiles/main.dir/Source-code/debug/main.cpp.obj
+build main_debug.exe: CXX_EXECUTABLE_LINKER__main_debug_Debug ico.o CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj
   FLAGS = -g
   LINK_FLAGS = -static
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\main.dir
+  OBJECT_DIR = CMakeFiles\main_debug.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = main.exe
-  TARGET_IMPLIB = libmain.dll.a
-  TARGET_PDB = main.exe.dbg
+  TARGET_FILE = main_debug.exe
+  TARGET_IMPLIB = libmain_debug.dll.a
+  TARGET_PDB = main_debug.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target main_stable
+
+
+#############################################
+# Order-only phony target for main_stable
+
+build cmake_object_order_depends_target_main_stable: phony || CMakeFiles/main_stable.dir
+
+build CMakeFiles/main_stable.dir/Source-code/stable/main.cpp.obj: CXX_COMPILER__main_stable_unscanned_Debug C$:/Users/valer/CLionProjects/vAlerain-Ark/Source-code/stable/main.cpp || cmake_object_order_depends_target_main_stable
+  DEP_FILE = CMakeFiles\main_stable.dir\Source-code\stable\main.cpp.obj.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/valer/CLionProjects/vAlerain-Ark/Header-file -IC:/Users/valer/CLionProjects/vAlerain-Ark/Header-file/sys
+  OBJECT_DIR = CMakeFiles\main_stable.dir
+  OBJECT_FILE_DIR = CMakeFiles\main_stable.dir\Source-code\stable
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target main_stable
+
+
+#############################################
+# Link the executable main_stable.exe
+
+build main_stable.exe: CXX_EXECUTABLE_LINKER__main_stable_Debug ico.o CMakeFiles/main_stable.dir/Source-code/stable/main.cpp.obj
+  FLAGS = -g
+  LINK_FLAGS = -static
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\main_stable.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = main_stable.exe
+  TARGET_IMPLIB = libmain_stable.dll.a
+  TARGET_PDB = main_stable.exe.dbg
 
 
 #############################################
@@ -101,7 +136,9 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build main: phony main.exe
+build main_debug: phony main_debug.exe
+
+build main_stable: phony main_stable.exe
 
 # =============================================================================
 # Folder targets.
@@ -111,7 +148,7 @@ build main: phony main.exe
 #############################################
 # Folder: C:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug
 
-build all: phony main.exe
+build all: phony main_debug.exe main_stable.exe
 
 # =============================================================================
 # Built-in targets

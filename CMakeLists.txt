@@ -11,7 +11,7 @@ include_directories(Header-file/sys)
 set(CMAKE_EXE_LINKER_FLAGS -static)
 
 # 添加可执行文件目标
-add_executable(main
+add_executable(main_debug
         Source-code/debug/main.cpp
         cmake-build-debug/ico.o
 )

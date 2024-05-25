@@ -1,4 +1,4 @@
 "C:\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/JetBrains/CLion 2023.3.4/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\Users\valer\CLionProjects\vAlerain-Ark -B C:\Users\valer\CLionProjects\vAlerain-Ark\cmake-build-debug
--- Configuring done (6.6s)
+-- Configuring done (0.2s)
 -- Generating done (0.0s)
 -- Build files have been written to: C:/Users/valer/CLionProjects/vAlerain-Ark/cmake-build-debug
