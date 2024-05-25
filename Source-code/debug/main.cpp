@@ -268,6 +268,8 @@ void printError(const TCHAR* msg )
     p = nullptr;
 }
 
+//watt toolkit fuck you
+
 int main() {
     COLOR_PRINT("   _    _                _               _         _\n", 3);
     COLOR_PRINT("__   __/ \\  | | ___ _ __ __ _(_)_ __         / \\   _ __| | __\n", 3);
