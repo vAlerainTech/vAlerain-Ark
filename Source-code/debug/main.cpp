@@ -268,7 +268,36 @@ void printError(const TCHAR* msg )
     p = nullptr;
 }
 
-//watt toolkit fuck you
+HHOOK g_hhk; // 全局键盘钩子句柄
+
+LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
+    if (nCode >= 0) {
+        if (wParam == WM_KEYDOWN) {
+            KBDLLHOOKSTRUCT* pkb = (KBDLLHOOKSTRUCT*)lParam;
+            // 处理键盘按下事件
+            cout << "Keyboard key code detected:" << pkb->vkCode << std::endl;
+        }
+    }
+    return CallNextHookEx(g_hhk, nCode, wParam, lParam);
+}
+
+int Hook_keyboard() {
+    g_hhk = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardProc, NULL, 0); // 安装键盘钩子
+    if (g_hhk == NULL) {
+        cerr << "无法安装键盘钩子" << std::endl;
+        return 1;
+    }
+
+    MSG msg;
+    while (GetMessage(&msg, NULL, 0, 0)) //GetMessage(&msg, NULL, 0, 0)更好的更安全的方案
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    UnhookWindowsHookEx(g_hhk); // 卸载键盘钩子
+    return 0;
+}
 
 int main() {
     COLOR_PRINT("   _    _                _               _         _\n", 3);
@@ -277,112 +306,126 @@ int main() {
     COLOR_PRINT(" \\ V / ___ \\| |  __/ | | (_| | | | | |_____/ ___ \\| |  |   < \n", 3);
     COLOR_PRINT("  \\_/_/   \\_\\_|\\___|_|  \\__,_|_|_| |_|    /_/   \\_\\_|  |_|\\_\\ \n", 3);
     bool cmd = false;
-    string pc= "PC vAlerain-Ark>";
-    string memu = "\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list\n    [*]Enter 3 to end the process\n    [*]Enter 4 to end the process tree \n [*]Enter 5 to obtain window message management\n  [*]Enter 6 to obtain the window handle where the mouse is located\n[*]Enter GetTime get system time\n[*]Input CMD to obtain simulated CMD terminal\n[*]Enter about to obtain information about\n [*]Enter exit to exit\n";
-    COLOR_PRINT(memu.c_str(),4);
-    while(true){
-    string input="";
+    string pc = "PC vAlerain-Ark>";
+    string memu = "\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list"
+                  "\n    [*]Enter 3 to end the process"
+                  "\n    [*]Enter 4 to end the process tree "
+                  "\n [*]Enter 5 to obtain window message management"
+                  "\n  [*]Enter 6 to obtain the window handle where the mouse is located"
+                  "\n[*]Enter GetTime get system time"
+                  "\n[*]Input CMD to obtain simulated CMD terminal"
+                  "\n[+]Monitoring keyboard hook;Enter Hook_keyboard;"
+                  "\n[*]Enter about to obtain information about"
+                  "\n [*]Enter exit to exit\n";
+    COLOR_PRINT(memu.c_str(), 4);
+    while (true) {
+        string input = "";
 
-    COLOR_PRINT(pc.c_str(),1);
-    getline(std::cin,input);
+        COLOR_PRINT(pc.c_str(), 1);
+        getline(std::cin, input);
 
-    if(input == "1" && cmd == false) {
-        string input_proce="";
-        cout<<"Input frequency to control the speed of the acquisition process in milliseconds:";
-        getline(std::cin,input_proce);
-        Get_all_processes(stoi(input_proce)); //为了解决getline只能读取字符串的原因使用stoi用来更正
-    }else if(input == "about" && cmd == false){
-        COLOR_PRINT("\nCLion's technical support\n"
-                    "vAlerain Develop;Code from Mr. vAlerain;\n"
-                    "Long term evaluation and repair of SNbing54\n"
-                    "Version: 1.0.0.7 (debugging)\n\n",1);
-        }else if(input == "exit" && cmd == false){
+        if (input == "1" && cmd == false) {
+            string input_proce = "";
+            cout << "Input frequency to control the speed of the acquisition process in milliseconds:";
+            getline(std::cin, input_proce);
+            Get_all_processes(stoi(input_proce)); //为了解决getline只能读取字符串的原因使用stoi用来更正
+        } else if (input == "about" && cmd == false) {
+            COLOR_PRINT("\nCLion's technical support\n"
+                        "vAlerain Develop;Code from Mr. vAlerain;\n"
+                        "Long term evaluation and repair of SNbing54\n"
+                        "Version: 1.0.0.7 (debugging)\n\n", 1);
+        } else if (input == "exit" && cmd == false) {
             return 0;
-        }else if(input == "3" && cmd == false){
+        } else if (input == "3" && cmd == false) {
             DWORD processID;
-            cout<<"\nEnter the process ID to end the process:";
-            cin>>processID;
+            cout << "\nEnter the process ID to end the process:";
+            cin >> processID;
             TerminateProcessByID(processID);
-        }else if(input =="4" && cmd == false){
+        } else if (input == "4" && cmd == false) {
             DWORD processID_;
-            cout<<"Enter process PID to end the process:";
-            cin>>processID_;
+            cout << "Enter process PID to end the process:";
+            cin >> processID_;
             TerminateProcessTree(processID_);
-        }else if(input == "" && cmd == false){
-            COLOR_PRINT("\nWarning: Your input of empty data cannot be parsed!\n\n",6);
-        }else if(input == "memu" && cmd == false){
-        COLOR_PRINT(memu.c_str(),4);
-        }else if(input == "6" && cmd == false){
+        } else if (input == "" && cmd == false) {
+            COLOR_PRINT("\nWarning: Your input of empty data cannot be parsed!\n\n", 6);
+        } else if (input == "memu" && cmd == false) {
+            COLOR_PRINT(memu.c_str(), 4);
+        } else if (input == "6" && cmd == false) {
             Sleep(3000);
-            cout<<"[-]"<<hwnd_to_int(GetForegroundWindow())<<"\n";
-        }else if(input == "test-debug" && cmd == false){
-            int hWnd=0;
-            COLOR_PRINT("Input Test Window Handle:",3);
-            cin>>hWnd;
-            window_hwnd_control(1,hWnd);
-        }else if(input == "get-prx" && cmd == false){
-        // 创建进程快照
-        HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-        if (hSnapshot == INVALID_HANDLE_VALUE) {
-            std::cerr << "Failed to create process snapshot." << std::endl;
-            return 1;
-        }
-
-        // 遍历进程列表
-        PROCESSENTRY32 pe32;
-        pe32.dwSize = sizeof(PROCESSENTRY32);
-        if (!Process32First(hSnapshot, &pe32)) {
-            std::cerr << "Failed to retrieve process information." << std::endl;
-            CloseHandle(hSnapshot);
-            return 1;
-        }
-
-        std::cout << "Process List:" << std::endl;
-
-        do {
-            string processIDStr = std::to_string(pe32.th32ProcessID);
-            string exeFileName(pe32.szExeFile);
-            string result = "Process ID: " + processIDStr + ", Name: " + exeFileName;
-            const char* charArray = result.c_str();
-            COLOR_PRINT(charArray,3);
-
-            // 打开进程句柄
-            HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pe32.th32ProcessID);
-            if (hProcess != NULL) {
-                string temp_=", Handle: " + to_string(reinterpret_cast<uintptr_t>(hProcess));
-                const char* charHandle = temp_.c_str();
-                COLOR_PRINT(charHandle,3);
-                // 关闭进程句柄
-                CloseHandle(hProcess);
-            } else {
-                std::cerr << "Failed to open process with ID: " << pe32.th32ProcessID << std::endl;
+            cout << "[-]" << hwnd_to_int(GetForegroundWindow()) << "\n";
+        } else if (input == "test-debug" && cmd == false) {
+            int hWnd = 0;
+            COLOR_PRINT("Input Test Window Handle:", 3);
+            cin >> hWnd;
+            window_hwnd_control(1, hWnd);
+        } else if (input == "get-prx" && cmd == false) {
+            // 创建进程快照
+            HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+            if (hSnapshot == INVALID_HANDLE_VALUE) {
+                std::cerr << "Failed to create process snapshot." << std::endl;
+                return 1;
             }
 
-            std::cout << std::endl;
-        } while (Process32Next(hSnapshot, &pe32));
+            // 遍历进程列表
+            PROCESSENTRY32 pe32;
+            pe32.dwSize = sizeof(PROCESSENTRY32);
+            if (!Process32First(hSnapshot, &pe32)) {
+                std::cerr << "Failed to retrieve process information." << std::endl;
+                CloseHandle(hSnapshot);
+                return 1;
+            }
 
-        // 关闭进程快照句柄
-        CloseHandle(hSnapshot);
+            std::cout << "Process List:" << std::endl;
 
-        }else if(input == "5" && cmd == false){
-            COLOR_PRINT("Kill Window:",4);
-            string hwnd_temp="";
-            getline(std::cin,hwnd_temp);
-            window_hwnd_control(1,stoi(hwnd_temp));
-        }else if(input =="GetTime" && cmd == false){
+            do {
+                string processIDStr = std::to_string(pe32.th32ProcessID);
+                string exeFileName(pe32.szExeFile);
+                string result = "Process ID: " + processIDStr + ", Name: " + exeFileName;
+                const char *charArray = result.c_str();
+                COLOR_PRINT(charArray, 3);
+
+                // 打开进程句柄
+                HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pe32.th32ProcessID);
+                if (hProcess != NULL) {
+                    string temp_ = ", Handle: " + to_string(reinterpret_cast<uintptr_t>(hProcess));
+                    const char *charHandle = temp_.c_str();
+                    COLOR_PRINT(charHandle, 3);
+                    // 关闭进程句柄
+                    CloseHandle(hProcess);
+                } else {
+                    std::cerr << "Failed to open process with ID: " << pe32.th32ProcessID << std::endl;
+                }
+
+                std::cout << std::endl;
+            } while (Process32Next(hSnapshot, &pe32));
+
+            // 关闭进程快照句柄
+            CloseHandle(hSnapshot);
+
+        } else if (input == "5" && cmd == false) {
+            COLOR_PRINT("Kill Window:", 4);
+            string hwnd_temp = "";
+            getline(std::cin, hwnd_temp);
+            window_hwnd_control(1, stoi(hwnd_temp));
+        } else if (input == "GetTime" && cmd == false) {
             SYSTEMTIME temp;
             GetLocalTime(&temp);
-            printf("%04d/%02d/%02d %02d:%02d:%02d\n\n", temp.wYear, temp.wMonth, temp.wDay, temp.wHour, temp.wMinute, temp.wSecond);
+            printf("%04d/%02d/%02d %02d:%02d:%02d\n\n", temp.wYear, temp.wMonth, temp.wDay, temp.wHour, temp.wMinute,
+                   temp.wSecond);
 
-        }else if(input == "CMD" && cmd == false){
-            pc="PC vAlerain-Ark(CMD)>";
+        } else if (input == "CMD" && cmd == false) {
+            pc = "PC vAlerain-Ark(CMD)>";
             cmd = true;
-        }else if(input == "GetInfo" && cmd == false){
+        } else if (input == "GetInfo" && cmd == false) {
             GetInfoSys();
-        }else if(cmd == true){
+        } else if (input == "Hook_keyboard") {
+            Hook_keyboard();
+        } else if (cmd == true) {
             system(input.c_str());
-        }else{
-            if(cmd == false){COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n\n",4);}
+        } else {
+            if (cmd == false) {
+                COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n\n", 4);
+            }
         }
     }
 }
