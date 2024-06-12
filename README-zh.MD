@@ -1,6 +1,5 @@
 # vAlertain方舟（一种基于C++的方舟，旨在解决安全人员问题）
 
-![](https://github.com/WhiteFoxLinux/vAlerain-Ark/blob/main/icon/icon.png)
 
 _方舟是Anti-Rootkit(对抗恶意程序）的简写, vAlertainArk目标成为逆向工程师、编程人员的工具，同时也能为那些希望清理恶意软件的用户服务。 以后也将会支持更多功能和命令。_
 

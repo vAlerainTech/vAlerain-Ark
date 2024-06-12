@@ -1,6 +1,5 @@
 # vAlerain-Ark(A C++based Ark aimed at solving security personnel issues)
 
-![](https://github.com/WhiteFoxLinux/vAlerain-Ark/blob/main/icon/icon.png)
 
 English | [简体中文](https://github.com/WhiteFoxLinux/vAlerain-Ark/blob/main/README-zh.MD) | [繁體中文](https://github.com/WhiteFoxLinux/vAlerain-Ark/blob/main/README-tw.MD)
 
