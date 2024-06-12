@@ -3,12 +3,13 @@
 using namespace std;
 HHOOK g_hhk; // 全局键盘钩子句柄
 
+
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
     if (nCode >= 0) {
         if (wParam == WM_KEYDOWN) {
             KBDLLHOOKSTRUCT* pkb = (KBDLLHOOKSTRUCT*)lParam;
             // 处理键盘按下事件
-            cout << "键盘按下：" << pkb->vkCode << std::endl;
+            cout << "Keyboard Press:" << pkb->vkCode << " Corresponding:"<<char(pkb->vkCode)<< "\n";
         }
     }
     return CallNextHookEx(g_hhk, nCode, wParam, lParam);
