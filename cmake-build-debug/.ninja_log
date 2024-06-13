@@ -1,21 +1,9 @@
-# ninja log v5
-1	1834	7347790540617834	CMakeFiles/vAlerain_Ark.dir/Preview-version/main.cpp.obj	fde7b43e9516adf4
-81	1829	7347790540534158	CMakeFiles/vAlerain_Ark.dir/Source-code/1.0.0.0/main.cpp.obj	b0f6579b75c2c32d
-35	1835	7347790540656767	CMakeFiles/vAlerain_Ark.dir/Source-code/1.0.0.2/main.cpp.obj	6f2269be867a7f06
-2	167	7348089054064623	my_target.exe	483635a10c08ac57
-56	1852	7347790541768169	CMakeFiles/vAlerain_Ark.dir/Source-code/1.0.0.1/main.cpp.obj	c8a3829b9b59685d
-2	233	7398050952095196	build.ninja	512e48bd8b57e2a8
-0	1047	7348087249745898	CMakeFiles/my_target.dir/Source-code/1.0.0.2/main.cpp.obj	5179fbc80b237b2a
-16	1063	7348087249905370	CMakeFiles/my_target.dir/Preview-version/1.0.0.1/main.cpp.obj	5614fc7c07131b26
-2	1280	7372799470176775	CMakeFiles/main.dir/Preview-version/1.0.0.1/main.cpp.obj	868930f70167a8cb
-2309	8146	7383520705490825	main.exe	24f50746fc60ca2a
-3	2308	7383520647203480	CMakeFiles/main.dir/Source-code/debug/main.cpp.obj	1f1ee72e04369fd0
-2	1472	7394680037648622	CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj	ef37b17abbcc9ef4
-1473	1875	7394680041615327	main_debug.exe	f4163904db13c513
-3	563	7398050952095196	build.ninja	512e48bd8b57e2a8
-2	1754	7398050969892976	CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj	ef37b17abbcc9ef4
-1754	2253	7398050974796398	main_debug.exe	f4163904db13c513
-3	2692	7399093787411240	CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj	ef37b17abbcc9ef4
-2693	4000	7399093800400844	main_debug.exe	f4163904db13c513
-3	1397	7399097395110861	CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj	ef37b17abbcc9ef4
-1398	1824	7399097399255496	main_debug.exe	f4163904db13c513
+# ninja log v6
+17	2252	7399946628303379	CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj	ef37b17abbcc9ef4
+2253	3514	7399946650658724	main_debug.exe	80802383dea992d
+9	1246	7399954286215051	CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj	ef37b17abbcc9ef4
+1247	1621	7399954298595839	main_debug.exe	80802383dea992d
+10	1255	7399955591096652	CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj	ef37b17abbcc9ef4
+1255	1620	7399955603552904	main_debug.exe	80802383dea992d
+10	1245	7399955748329351	CMakeFiles/main_debug.dir/Source-code/debug/main.cpp.obj	ef37b17abbcc9ef4
+1245	1618	7399955760680455	main_debug.exe	80802383dea992d

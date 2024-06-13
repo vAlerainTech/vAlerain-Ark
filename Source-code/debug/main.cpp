@@ -49,7 +49,6 @@ void COLOR_PRINT(const char* s, int color)
 6 = 黄色 14 = 淡黄色
 7 = 白色 15 = 亮白色*/
 
-
 int Get_all_processes(int num) { // 一个参数用来控制获取频率
     while (true) {
         // 创建进程快照
@@ -285,6 +284,7 @@ int main() {
                   "\n[*]Enter GetTime get system time"
                   "\n[*]Input CMD to obtain simulated CMD terminal"
                   "\n[+]Monitoring keyboard hook;Enter Hook_keyboard;"
+                  "\n[+]Monitor output, mouse hook input Hook_mouse;"
                   "\n[*]Enter about to obtain information about"
                   "\n [*]Enter exit to exit\n";
     COLOR_PRINT(memu.c_str(), 4);
@@ -390,6 +390,8 @@ int main() {
             GetInfoSys();
         } else if (input == "Hook_keyboard") {
             Hook_keyboard();
+        }else if(input == "Hook_mouse"){
+            mouseHook_();
         } else if (cmd == true) {
             system(input.c_str());
         } else {
