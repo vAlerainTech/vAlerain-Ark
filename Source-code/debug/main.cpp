@@ -1,11 +1,11 @@
 #include <windows.h>
 #include <iostream>
 #include <TlHelp32.h>
-#include <vector>
 #include <cmath>
 #include <stdio.h>
 #include <tchar.h>
 #include "Hook.h"
+#include "Process.h"
 
 using namespace std;
 
@@ -33,6 +33,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+void COLOR_PRINT_Poc(const char* s, int color)
+{
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(handle, FOREGROUND_INTENSITY | color);
+    printf(s);
+    SetConsoleTextAttribute(handle, FOREGROUND_INTENSITY | 7);
+}
+
 void COLOR_PRINT(const char* s, int color)
 {
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -49,7 +57,16 @@ void COLOR_PRINT(const char* s, int color)
 6 = 黄色 14 = 淡黄色
 7 = 白色 15 = 亮白色*/
 
-int Get_all_processes(int num) { // 一个参数用来控制获取频率
+#include <vector>
+
+namespace ArkProcess {
+    int Get_all_processes(int num);
+    bool TerminateProcessByID(DWORD processID);
+    void TerminateProcessTree(DWORD parentPID);
+    wchar_t GetProcessRoute(DWORD processID);
+}
+
+int ArkProcess::Get_all_processes(int num) { // 一个参数用来控制获取频率
     while (true) {
         // 创建进程快照
         HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
@@ -74,14 +91,14 @@ int Get_all_processes(int num) { // 一个参数用来控制获取频率
             string exeFileName(pe32.szExeFile);
             string result = "Process ID: " + processIDStr + ", Name: " + exeFileName;
             const char* charArray = result.c_str();
-            COLOR_PRINT(charArray,3);
+            COLOR_PRINT_Poc(charArray,3);
 
             // 打开进程句柄
             HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pe32.th32ProcessID);
             if (hProcess != NULL) {
                 string temp_=", Handle: " + to_string(reinterpret_cast<uintptr_t>(hProcess));
                 const char* charHandle = temp_.c_str();
-                COLOR_PRINT(charHandle,3);
+                COLOR_PRINT_Poc(charHandle,3);
                 // 关闭进程句柄
                 CloseHandle(hProcess);
             } else {
@@ -98,7 +115,7 @@ int Get_all_processes(int num) { // 一个参数用来控制获取频率
     return 0;
 }
 
-bool TerminateProcessByID(DWORD processID) {
+bool ArkProcess::TerminateProcessByID(DWORD processID) {
     // 打开进程句柄
     HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, processID);
     if (hProcess == NULL) {
@@ -119,7 +136,7 @@ bool TerminateProcessByID(DWORD processID) {
 }
 
 // 结束指定进程及其子进程
-void TerminateProcessTree(DWORD parentPID) {
+void ArkProcess::TerminateProcessTree(DWORD parentPID) {
     // 打开父进程句柄
     HANDLE hParentProcess = OpenProcess(PROCESS_TERMINATE | PROCESS_QUERY_INFORMATION, FALSE, parentPID);
     if (hParentProcess == NULL) {
@@ -276,11 +293,11 @@ int main() {
     COLOR_PRINT("  \\_/_/   \\_\\_|\\___|_|  \\__,_|_|_| |_|    /_/   \\_\\_|  |_|\\_\\ \n", 3);
     bool cmd = false;
     string pc = "PC vAlerain-Ark>";
-    string memu = "\nvAlerain ARK menu\n [*]Enter 1 to obtain the process list"
-                  "\n    [*]Enter 3 to end the process"
-                  "\n    [*]Enter 4 to end the process tree "
-                  "\n [*]Enter 5 to obtain window message management"
-                  "\n  [*]Enter 6 to obtain the window handle where the mouse is located"
+    string memu = "\nvAlerain ARK menu\n [*]Enter GetProcessList to obtain the process list"
+                  "\n    [*]Enter EndProcess to end the process"
+                  "\n    [*]Enter EndProcessTree to end the process tree "
+                  "\n [*]Enter GetWindowMessageManagement to obtain window message management"
+                  "\n  [*]Enter GetMouseWindowHandle to obtain the window handle where the mouse is located"
                   "\n[*]Enter GetTime get system time"
                   "\n[*]Input CMD to obtain simulated CMD terminal"
                   "\n[+]Monitoring keyboard hook;Enter Hook_keyboard;"
@@ -294,11 +311,11 @@ int main() {
         COLOR_PRINT(pc.c_str(), 1);
         getline(std::cin, input);
 
-        if (input == "1" && cmd == false) {
+        if (input == "GetProcessList" && cmd == false) {
             string input_proce = "";
             cout << "Input frequency to control the speed of the acquisition process in milliseconds:";
             getline(std::cin, input_proce);
-            Get_all_processes(stoi(input_proce)); //为了解决getline只能读取字符串的原因使用stoi用来更正
+            ArkProcess::Get_all_processes(stoi(input_proce)); //为了解决getline只能读取字符串的原因使用stoi用来更正
         } else if (input == "about" && cmd == false) {
             COLOR_PRINT("\nCLion's technical support\n"
                         "vAlerain Develop;Code from Mr. vAlerain;\n"
@@ -306,21 +323,21 @@ int main() {
                         "Version: 1.0.0.7 (debugging)\n\n", 1);
         } else if (input == "exit" && cmd == false) {
             return 0;
-        } else if (input == "3" && cmd == false) {
+        } else if (input == "EndProcess" && cmd == false) {
             DWORD processID;
             cout << "\nEnter the process ID to end the process:";
             cin >> processID;
-            TerminateProcessByID(processID);
-        } else if (input == "4" && cmd == false) {
+            ArkProcess::TerminateProcessByID(processID);
+        } else if (input == "EndProcessTree" && cmd == false) {
             DWORD processID_;
             cout << "Enter process PID to end the process:";
             cin >> processID_;
-            TerminateProcessTree(processID_);
+            ArkProcess::TerminateProcessTree(processID_);
         } else if (input == "" && cmd == false) {
             COLOR_PRINT("\nWarning: Your input of empty data cannot be parsed!\n\n", 6);
         } else if (input == "memu" && cmd == false) {
             COLOR_PRINT(memu.c_str(), 4);
-        } else if (input == "6" && cmd == false) {
+        } else if (input == "GetMouseWindowHandle" && cmd == false) {
             Sleep(3000);
             cout << "[-]" << hwnd_to_int(GetForegroundWindow()) << "\n";
         } else if (input == "test-debug" && cmd == false) {
@@ -372,7 +389,7 @@ int main() {
             // 关闭进程快照句柄
             CloseHandle(hSnapshot);
 
-        } else if (input == "5" && cmd == false) {
+        } else if (input == "GetWindowMessageManagement" && cmd == false) {
             COLOR_PRINT("Kill Window:", 4);
             string hwnd_temp = "";
             getline(std::cin, hwnd_temp);
@@ -384,6 +401,8 @@ int main() {
                    temp.wSecond);
 
         } else if (input == "CMD" && cmd == false) {
+            COLOR_PRINT("Using CMD mode requires a restart to recover!\n",4);
+
             pc = "PC vAlerain-Ark(CMD)>";
             cmd = true;
         } else if (input == "GetInfo" && cmd == false) {
