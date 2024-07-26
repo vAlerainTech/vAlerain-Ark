@@ -1,0 +1,12 @@
+# ninja log v6
+5	118	7423147521864828	C:/Users/valer/Documents/vAlerainArk/build/Desktop_Qt_6_7_2_MinGW_64_bit-Release/CMakeFiles/cmake.verify_globs	47a71728359188d5
+114	671	7423146852272929	vAlerainArk_autogen/timestamp	42b5189d61ff21d9
+114	671	7423146852272929	vAlerainArk_autogen/mocs_compilation.cpp	42b5189d61ff21d9
+675	1855	7423146852980822	CMakeFiles/vAlerainArk.dir/vAlerainArk_autogen/mocs_compilation.cpp.obj	1a63b85dca346a79
+114	671	7423146852272929	C:/Users/valer/Documents/vAlerainArk/build/Desktop_Qt_6_7_2_MinGW_64_bit-Release/vAlerainArk_autogen/timestamp	42b5189d61ff21d9
+114	671	7423146852272929	C:/Users/valer/Documents/vAlerainArk/build/Desktop_Qt_6_7_2_MinGW_64_bit-Release/vAlerainArk_autogen/mocs_compilation.cpp	42b5189d61ff21d9
+689	1908	7423146853115980	CMakeFiles/vAlerainArk.dir/main.cpp.obj	32749e9d39804e9b
+713	2074	7423146853360959	CMakeFiles/vAlerainArk.dir/mainwindow.cpp.obj	cc936c576f1eb422
+2075	2240	7423146866967934	vAlerainArk.exe	380f96ccb51e063b
+118	1027	7423147528202064	build.ninja	5cabacc556ab812
+9	126	7423147531548067	C:/Users/valer/Documents/vAlerainArk/build/Desktop_Qt_6_7_2_MinGW_64_bit-Release/CMakeFiles/cmake.verify_globs	47a71728359188d5

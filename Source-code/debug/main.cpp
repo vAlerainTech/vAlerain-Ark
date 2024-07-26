@@ -6,7 +6,7 @@
 #include <tchar.h>
 #include "Hook.h"
 #include "Process.h"
-
+#include <direct.h>
 using namespace std;
 
 /*
@@ -187,6 +187,8 @@ HWND int_to_hwnd(int parameter)
     return reinterpret_cast<HWND>(parameter);
 }
 
+#include <psapi.h>
+
 HWND temp1 = GetForegroundWindow(); //»ñÈ¡´°¿Ú¾ä±úapi
 
 void window_hwnd_control(int parameter,int window_hwnd)
@@ -302,6 +304,7 @@ int main() {
                   "\n[*]Input CMD to obtain simulated CMD terminal"
                   "\n[+]Monitoring keyboard hook;Enter Hook_keyboard;"
                   "\n[+]Monitor output, mouse hook input Hook_mouse;"
+                  "\n[&]Enter 'new' to create a new project;"
                   "\n[*]Enter about to obtain information about"
                   "\n [*]Enter exit to exit\n";
     COLOR_PRINT(memu.c_str(), 4);
@@ -413,6 +416,54 @@ int main() {
             mouseHook_();
         } else if (cmd == true) {
             system(input.c_str());
+        }else if(input == "new"){
+            COLOR_PRINT("Input ss for static analysis;\nInput t for dynamic analysis;\n",4);
+            string input = "";
+            getline(std::cin, input);
+            COLOR_PRINT("Is the program 64 bit?(y/n)\n",4);
+            string bit= "";
+            getline(std::cin, bit);
+            COLOR_PRINT("Do you need to check if the program has a shell added?(y/n)\n",4);
+            string confound = "";
+            getline(std::cin, confound);
+            if(confound=="y"){
+                const int MAXPATH = 250;
+                char buffer[MAXPATH];
+                getcwd(buffer, MAXPATH);
+                string temp_open=buffer;
+                temp_open=temp_open+"\\die_x86\\die.exe";
+                system(temp_open.c_str());
+            }
+            if(input == "t" && bit == "y"){
+                const int MAXPATH = 250;
+                char buffer[MAXPATH];
+                getcwd(buffer, MAXPATH);
+                string temp_open=buffer;
+                temp_open=temp_open+"\\IDA_Pro_7.7\\ida64.exe";
+                system(temp_open.c_str());
+            }else if(input == "t"){
+                const int MAXPATH = 250;
+                char buffer[MAXPATH];
+                getcwd(buffer, MAXPATH);
+                string temp_open=buffer;
+                temp_open=temp_open+"\\IDA_Pro_7.7\\ida.exe";
+                system(temp_open.c_str());
+            }//ida.exe
+            if(input == "ss" && bit =="y"){
+                const int MAXPATH = 250;
+                char buffer[MAXPATH];
+                getcwd(buffer, MAXPATH);
+                string temp_open=buffer;
+                temp_open=temp_open+"\\x64dbg\\release\\x64\\x64dbg.exe";
+                system(temp_open.c_str());
+            }else if(input == "ss"){
+                const int MAXPATH = 250;
+                char buffer[MAXPATH];
+                getcwd(buffer, MAXPATH);
+                string temp_open=buffer;
+                temp_open=temp_open+"\\x64dbg\\release\\x32\\x32dbg.exe";
+                system(temp_open.c_str());
+            }
         } else {
             if (cmd == false) {
                 COLOR_PRINT("\nError: You entered an incorrect parameter that cannot be parsed into any data!\n\n", 4);
