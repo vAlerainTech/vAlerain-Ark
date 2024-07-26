@@ -1,0 +1,38 @@
+// DIE's signature file
+// Author: LinXP
+// doc-ref: http://www.libpng.org/pub/png/spec/1.2/PNG-Contents.html
+
+init("image","");
+
+function detect(bShowType,bShowVersion,bShowOptions)
+{
+    if(Binary.getSize()>=48)
+    {
+        if(Binary.compare("89'PNG\r\n'1A0A........'IHDR'"))
+        {
+            bDetected=true;
+            sName = "Portable Network Graphics (.PNG)";
+            sOption(Binary.read_uint32(0x10,_BE)+"x"+Binary.read_uint32(0x14,_BE));
+            switch(Binary.read_uint8(0x19))
+            {
+                case 0: sOption("Grey");       break;
+                case 2: sOption("RGB");        break;
+                case 3: sOption("Indexed");    break;
+                case 4: sOption("Grey+Alpha"); break;
+                case 6: sOption("RGBA");       break;
+                default: bDetected=false;
+            }
+            if(Binary.read_uint8(0x1C))
+            {
+                sOption("Interlaced");
+            }
+            if(Binary.compare("00000008'acTL'",0x21))
+            {
+                sName = "Animated Portable Network Graphics (.PNG)"
+                sOption("frames:" + Binary.read_uint32(0x29,_BE));  
+            }
+        }
+    }
+
+    return result(bShowType,bShowVersion,bShowOptions);
+}

@@ -1,0 +1,52 @@
+IDA Pro 7.7.220118 (SP1) 绿色版由 Binwalker 基于 Think-Cell Operations GmbH 公司泄露版本和 TOM_RUS 的 Keygen 方案制作，包含全套 Hex-Rays Decompiler 插件（部分为老版本添加而来），解压后运行【IDA_InitTool.exe】即可一键绿化，默认配置为绿色版 Python 3.8.10
+
+【需要注意】
+    1. 路径不能含有中文
+    2. 使用绿色版 Python 安装插件的时，务必使用【-m】参数来指定以导入模块方式运行 pip，如：python.exe -m pip install + 包名
+    3. IDA 下的【idapyswitch.exe】可以切换 Python 版本，但请注意切换到非绿色版 Python 后需要自行安装插件所需的依赖
+    4. IDA 下的【SDK77.7z】为 IDA 7.7 SDK
+    5. IDA 下的【Kengen.7z】为 IDA Key 生成程序
+    6. IDA 下的【msdia140.dll】、【symsrv.dll】和【symsrv.yes】以及 IDA/plugins 下的【pdb.dll】和【pdb64.dll】用于 PDB 修复增强，如有问题可删除，其中【pdb.dll.bak】和【pdb64.dll.bak】为原程序的备份
+    7. IDA/plugins 下的【BinCAT/install_plugin.py】为 BinCAT 插件的安装脚本，需要手动在 IDA 中导入脚本安装
+    8. IDA/plugins 下的【bindiff7.msi】为 BinDiff 安装程序，可选安装，安装后可配合其插件使用
+    9. IDA/plugins 下的【diaphora/diaphora.py】为 diaphora 插件的脚本，每次使用都需要手动在 IDA 中导入
+
+【修改说明】
+    1. 增加了一些常用插件
+        BinCAT
+        diaphora
+        patching
+        ret-sync
+        Auto Re
+        BinDiff
+        Findcrypt
+        IDA Signsrch
+        Keypatch
+        LazyIDA
+        StrongCC
+    2. 修改了一些默认配置
+        cfg/ida.cfg
+            增加：
+                GB2312: Chinese
+            修改：
+                STORE_USER_INFO = YES --> NO
+                OPCODE_BYTES = 0 --> 10
+                INDENTION = 16 --> 0
+                MAX_DATALINE_LENGTH = 70 --> 100
+                SHOW_BASIC_BLOCKS = NO --> YES
+                SHOW_XREFS = 2 --> 15
+                SHOW_SOURCE_LINNUM = NO --> YES
+        cfg/Chinese.clt
+            增加：
+                u2000..u206F,
+                u3000..u303F,
+    3. IDA DLL 修改
+        ida.dll
+            0027AA97 10 --> 00
+            00383CF3 5C --> C8
+        ida64.dll
+            00283695 10 --> 00
+            0038CE63 5C --> C8
+
+※ 由 Binwalker 制作绿化工具，功能包含：绿化 Python 3.8.10、禁用 IDA 自动联网、设置 IDA 桌面快捷方式
+※ 仅作学习交流使用，不得用于商业或者非法用途，请测试后尽快删除，购买正版进行支持
